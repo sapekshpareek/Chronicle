@@ -1,16 +1,40 @@
-import { Card, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 
-const NewsCard = ({title, description, imgUrl, url}) => {
-    return (
-        <Card sx={{
-            p: 2
-        }}>
-            <img src={imgUrl} alt="img" />
-            <Typography variant="h4">{title}</Typography>
-            <Typography variant="bodu1">{description}</Typography>
-
-        </Card>
-    );
+const NewsCard = ({ title, description, imgUrl, url, dateTime, author, key }) => {
+  return (
+    <Card
+      sx={{
+        // p: 2,
+        m: 2,
+        borderRadius: "2vh",
+      }}
+      key={key}
+    >
+      <CardMedia component={"img"} image={imgUrl} alt="news-image" />
+      <CardContent>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            mb: 2,
+          }}
+        >
+          <Typography variant="caption" color="textSecondary">
+            {author}
+          </Typography>
+          <Typography variant="caption" color="textSecondary">
+            {dateTime}
+          </Typography>
+        </Box>
+        <Typography gutterBottom variant="h5">
+          {title}
+        </Typography>
+        <Typography variant="body1" color="textSecondary">
+          {description}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
 };
 
 export default NewsCard;
