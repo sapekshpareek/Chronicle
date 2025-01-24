@@ -9,7 +9,7 @@ const SelectCard = ({ name, logo, url }) => {
         height: "26vh",
         width: "34vh",
         p: 2,
-        borderRadius: "5vh",
+        borderRadius: "2vh",
       }}
     >
       <Link to={url}>

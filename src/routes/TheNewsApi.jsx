@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import NewsCard from "../components/shared/NewsCard";
 
@@ -74,11 +74,13 @@ const TheNewsApi = ({api}) => {
           </Typography>
         </Box>
       ) : items.length > 0 ? (
+        <Grid container spacing={3}>
+          {
         // console.log(items),
         // Render news cards if items are available
         items.map((item) => (
-          <NewsCard
-            key={item.uuid} // Use a unique key for each item
+          <Grid item key={item.uuid} xs={12} sm={6} md={4} lg={3}>
+          <NewsCard // Use a unique key for each item
             title={item.title}
             description={item.description}
             imgUrl={item.image_url}
@@ -86,7 +88,9 @@ const TheNewsApi = ({api}) => {
             dateTime={item.published_at}
             author={item.source}
           />
-        ))
+          </Grid>
+        ))}
+        </Grid>
       ) : (
         // Render loading message while fetching data
         <Box

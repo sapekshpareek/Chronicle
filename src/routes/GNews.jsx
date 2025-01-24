@@ -1,10 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import NewsCard from "../components/shared/NewsCard";
 
-const GNews = ({api}) => {
+const GNews = ({ api }) => {
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null); // State to track error messages
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -14,23 +14,21 @@ const GNews = ({api}) => {
         );
 
         if (!response.ok) {
-          const errorData = await response.json(); // Extract error details from the API response
-          //   console.log(errorData);
+          const errorData = await response.json();
           throw new Error(
             errorData.errors || `HTTP error! status: ${response.status}`
           );
         }
 
         const data = await response.json();
-        setItems(data.articles); // Update items with fetched articles
+        setItems(data.articles);
       } catch (error) {
-        setError(error.message); // Set the specific error message
-        // console.error("Failed to fetch news:", error);
+        setError(error.message);
       }
     };
 
     fetchNews();
-  }, []); // Empty dependency array to run the effect only once
+  }, [api]);
 
   return (
     <Box
@@ -38,10 +36,10 @@ const GNews = ({api}) => {
         height: "90vh",
         overflow: "auto",
         bgcolor: "background",
+        p: 2, // Padding around the content
       }}
     >
       {error ? (
-        // Render error message if there's an error
         <Box
           sx={{
             display: "flex",
@@ -49,45 +47,35 @@ const GNews = ({api}) => {
             justifyContent: "center",
             alignItems: "center",
             height: "90vh",
-            padding: "2vh",
           }}
         >
           <Typography
             variant="h4"
             color="error"
-            sx={{
-              textAlign: "center",
-              padding: "2vh",
-            }}
+            sx={{ textAlign: "center", mb: 2 }}
           >
             Error
           </Typography>
-          <Typography
-            variant="h6"
-            color="textSecondary"
-            sx={{
-              textAlign: "center",
-            }}
-          >
-            {`${error}`} {/* Show the specific error message */}
+          <Typography variant="h6" color="textSecondary" sx={{ textAlign: "center" }}>
+            {error}
           </Typography>
         </Box>
       ) : items.length > 0 ? (
-        // console.log(items),s
-        // Render news cards if items are available
-        items.map((item) => (
-          <NewsCard
-            key={item.url} // Use a unique key for each item
-            title={item.title}
-            description={item.description}
-            imgUrl={item.image}
-            url={item.url}
-            dateTime={item.publishedAt}
-            author={item.source.name}
-          />
-        ))
+        <Grid container spacing={3}>
+          {items.map((item) => (
+            <Grid item key={item.url} xs={12} sm={6} md={4} lg={3}>
+              <NewsCard
+                title={item.title}
+                description={item.description}
+                imgUrl={item.image}
+                url={item.url}
+                dateTime={item.publishedAt}
+                author={item.source.name}
+              />
+            </Grid>
+          ))}
+        </Grid>
       ) : (
-        // Render loading message while fetching data
         <Box
           sx={{
             display: "flex",

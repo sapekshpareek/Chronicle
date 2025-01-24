@@ -31,6 +31,12 @@ const NewsCard = ({
       sx={{
         m: 2,
         borderRadius: "2vh",
+        justifyContent: "space-between",
+        cursor: "pointer",
+        // display: "flex",
+        // flexDirection: { xs: "column", md: "row" },
+        // minWidth: { xs: "100%", md: "50%" }, // Set the maximum width for different screen sizes,
+        // height: "auto",
       }}
     >
       <Link to={url} target="_blank">

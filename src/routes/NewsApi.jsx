@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import NewsCard from "../components/shared/NewsCard";
 
@@ -10,7 +10,7 @@ const GNews = ({api}) => {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=tesla&apiKey=${api}`
+          `https://newsapi.org/v2/everything?q=economy&from=2025-01-23&to=2025-01-23&sortBy=popularity&apiKey=${api}`
         );
 
         if (!response.ok) {
@@ -73,19 +73,24 @@ const GNews = ({api}) => {
           </Typography>
         </Box>
       ) : items.length > 0 ? (
-        // console.log(items),s
+        <Grid container spacing={3}>
+          {
+
+        // console.log(items),}
         // Render news cards if items are available
         items.map((item) => (
+          <Grid item key={item.url} xs={12} sm={6} md={4} lg={3}>
           <NewsCard
-            key={item.url} // Use a unique key for each item
             title={item.title}
             description={item.description}
-            imgUrl={item.image}
+            imgUrl={item.urlToImage}
             url={item.url}
             dateTime={item.publishedAt}
             author={item.source.name}
           />
-        ))
+          </Grid>
+        ))}
+        </Grid>
       ) : (
         // Render loading message while fetching data
         <Box
