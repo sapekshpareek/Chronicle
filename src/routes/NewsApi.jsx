@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer";
 import NewsCard from "../components/shared/NewsCard";
 
 const GNews = ({api}) => {
@@ -104,6 +105,7 @@ const GNews = ({api}) => {
           <Typography variant="h6">Loading...</Typography>
         </Box>
       )}
+      <Footer />
     </Box>
   );
 };
