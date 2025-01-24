@@ -10,14 +10,14 @@ const GNews = ({api}) => {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=tesla&apiKey=${api}`
+          `https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=in&max=10&apikey=${api}`
         );
 
         if (!response.ok) {
           const errorData = await response.json(); // Extract error details from the API response
-            // console.log(errorData);
+          //   console.log(errorData);
           throw new Error(
-            errorData.message || `HTTP error! status: ${response.status}`
+            errorData.errors || `HTTP error! status: ${response.status}`
           );
         }
 

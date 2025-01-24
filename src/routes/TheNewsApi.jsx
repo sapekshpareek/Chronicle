@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import NewsCard from "../components/shared/NewsCard";
 
-const GNews = ({api}) => {
+const TheNewsApi = ({api}) => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null); // State to track error messages
 
@@ -10,19 +10,20 @@ const GNews = ({api}) => {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=tesla&apiKey=${api}`
+          `https://api.thenewsapi.com/v1/news/top?api_token=${api}&locale=in&limit=3`
         );
 
         if (!response.ok) {
           const errorData = await response.json(); // Extract error details from the API response
-            // console.log(errorData);
+          //   console.log(errorData);
           throw new Error(
-            errorData.message || `HTTP error! status: ${response.status}`
+            errorData.errors || `HTTP error! status: ${response.status}`
           );
         }
 
         const data = await response.json();
-        setItems(data.articles); // Update items with fetched articles
+        // console.log(data);
+        setItems(data.data); // Update items with fetched articles
       } catch (error) {
         setError(error.message); // Set the specific error message
         // console.error("Failed to fetch news:", error);
@@ -73,17 +74,17 @@ const GNews = ({api}) => {
           </Typography>
         </Box>
       ) : items.length > 0 ? (
-        // console.log(items),s
+        // console.log(items),
         // Render news cards if items are available
         items.map((item) => (
           <NewsCard
-            key={item.url} // Use a unique key for each item
+            key={item.uuid} // Use a unique key for each item
             title={item.title}
             description={item.description}
-            imgUrl={item.image}
+            imgUrl={item.image_url}
             url={item.url}
-            dateTime={item.publishedAt}
-            author={item.source.name}
+            dateTime={item.published_at}
+            author={item.source}
           />
         ))
       ) : (
@@ -103,4 +104,4 @@ const GNews = ({api}) => {
   );
 };
 
-export default GNews;
+export default TheNewsApi;

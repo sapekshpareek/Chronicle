@@ -1,15 +1,39 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const NewsCard = ({ title, description, imgUrl, url, dateTime, author, key }) => {
+const NewsCard = ({
+  title,
+  description,
+  imgUrl,
+  url,
+  dateTime,
+  author,
+}) => {
+  // Safely convert dateTime to a Date object
+  const date = new Date(dateTime);
+
+  // Ensure the date is valid
+  if (isNaN(date)) {
+    // console.error("Invalid dateTime:", dateTime);  //Comment for production
+    return null; // Skip rendering if dateTime is invalid
+  }
+
+  // Format the date and time
+  const formattedDate = date.toLocaleDateString("en-GB"); // e.g., "24/01/2025"
+  const formattedTime = date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
   return (
     <Card
       sx={{
-        // p: 2,
         m: 2,
         borderRadius: "2vh",
       }}
-      key={key}
     >
+      <Link to={url} target="_blank">
       <CardMedia component={"img"} image={imgUrl} alt="news-image" />
       <CardContent>
         <Box
@@ -23,7 +47,7 @@ const NewsCard = ({ title, description, imgUrl, url, dateTime, author, key }) =>
             {author}
           </Typography>
           <Typography variant="caption" color="textSecondary">
-            {dateTime}
+            {`${formattedDate} ${formattedTime}`}
           </Typography>
         </Box>
         <Typography gutterBottom variant="h5">
@@ -33,6 +57,7 @@ const NewsCard = ({ title, description, imgUrl, url, dateTime, author, key }) =>
           {description}
         </Typography>
       </CardContent>
+      </Link>
     </Card>
   );
 };
