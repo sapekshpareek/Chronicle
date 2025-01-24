@@ -10,7 +10,7 @@ const GNews = ({api}) => {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=economy&from=2025-01-23&to=2025-01-23&sortBy=popularity&apiKey=${api}`
+          `https://newsapi.org/v2/everything?q=mobile&from=2025-01-23&to=&sortBy=popularity&apiKey=${api}`
         );
 
         if (!response.ok) {
@@ -83,7 +83,7 @@ const GNews = ({api}) => {
           <NewsCard
             title={item.title}
             description={item.description}
-            imgUrl={item.urlToImage}
+            imgUrl={item.urlToImage || "/news/NewsAPI-ORG.png"}
             url={item.url}
             dateTime={item.publishedAt}
             author={item.source.name}

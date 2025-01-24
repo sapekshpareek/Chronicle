@@ -20,7 +20,7 @@ createRoot(document.getElementById("root")).render(
     <ThemeProvider theme={theme}>
       <CssBaseline>
         <BrowserRouter>
-          <App />
+          <App mode={mode} />
         </BrowserRouter>
       </CssBaseline>
     </ThemeProvider>

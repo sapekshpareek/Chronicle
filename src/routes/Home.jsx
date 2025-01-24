@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import SelectCard from "../components/shared/SelectCard";
 
-const Home = () => {
+const Home = ({mode}) => {
   return (
     <Box
       className="items-center justify-evenly"
@@ -14,7 +14,7 @@ const Home = () => {
     >
       <SelectCard name={"News API"} logo={"/news/NewsAPI-ORG.png"} url={"/newsapi"}/>
       <SelectCard name={"The News API"} logo = {"/news/TheNewsapi-logo.png"} url = {"/thenewsapi"} />
-      <SelectCard name={"GNews"} logo = { "/news/Gnews-logo-white.png"} url={"/gnews"}/>
+      <SelectCard name={"GNews"} logo = {mode==="light"?"/news/Gnews-logo-black.png":"/news/Gnews-logo-white.png"} url={"/gnews"}/>
     </Box>
   );
 };

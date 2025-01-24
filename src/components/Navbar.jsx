@@ -2,8 +2,9 @@ import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const logoLight = "/logos/Chronicle-logo-white.png";
+const logoDark = "/logos/Chronicle-logo-black.png";
 
-const Navbar = () => {
+const Navbar = ({mode}) => {
   return (
     <Box
       className="flex items-center justify-center"
@@ -14,7 +15,7 @@ const Navbar = () => {
     >
       <Link to={"/"}>
         <img
-          src={logoLight}
+          src={mode==="light"? logoDark : logoLight}
           alt="Logo"
           style={{
             height: "6vh",
