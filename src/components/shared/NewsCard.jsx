@@ -56,10 +56,10 @@ const NewsCard = ({
             {`${formattedDate} ${formattedTime}`}
           </Typography>
         </Box>
-        <Typography gutterBottom variant="h5">
+        <Typography gutterBottom variant="h5" >
           {title}
         </Typography>
-        <Typography variant="body1" color="textSecondary">
+        <Typography variant="body1" color="textSecondary" textAlign={"justify"}>
           {description}
         </Typography>
       </CardContent>

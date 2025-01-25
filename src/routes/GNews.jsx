@@ -67,7 +67,7 @@ const GNews = ({ api }) => {
               <NewsCard
                 title={item.title}
                 description={item.description}
-                imgUrl={item.image}
+                imgUrl={item.image || "/news/Gnews-logo-black.png"}
                 url={item.url}
                 dateTime={item.publishedAt}
                 author={item.source.name}
