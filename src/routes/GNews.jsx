@@ -84,6 +84,14 @@ const GNews = ({ api }) => {
             height: "90vh",
           }}
         >
+          {/* <NewsCard 
+          title={"The News Card"}
+          description={"The News Card description"}
+          imgUrl={"/news/Gnews-logo-black.png"}
+          dateTime={"Date"}
+          author={"Author"}
+
+          /> */}
           <Typography variant="h6">Loading...</Typography>
         </Box>
       )}
