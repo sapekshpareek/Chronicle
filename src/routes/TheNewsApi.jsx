@@ -1,11 +1,20 @@
-import { Box, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import NewsCard from "../components/shared/NewsCard";
 
-const TheNewsApi = ({api}) => {
+const TheNewsApi = ({ api }) => {
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null); // State to track error messages
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); // Track loading state
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -15,24 +24,23 @@ const TheNewsApi = ({api}) => {
         );
 
         if (!response.ok) {
-          const errorData = await response.json(); // Extract error details from the API response
-          //   console.log(errorData);
+          const errorData = await response.json();
           throw new Error(
             errorData.errors || `HTTP error! status: ${response.status}`
           );
         }
 
         const data = await response.json();
-        // console.log(data);
         setItems(data.data); // Update items with fetched articles
       } catch (error) {
-        setError(error.message); // Set the specific error message
-        // console.error("Failed to fetch news:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false); // Set loading to false after fetching completes
       }
     };
 
     fetchNews();
-  }, []); // Empty dependency array to run the effect only once
+  }, [api]);
 
   return (
     <Box
@@ -43,7 +51,6 @@ const TheNewsApi = ({api}) => {
       }}
     >
       {error ? (
-        // Render error message if there's an error
         <Box
           sx={{
             display: "flex",
@@ -71,29 +78,58 @@ const TheNewsApi = ({api}) => {
               textAlign: "center",
             }}
           >
-            {`${error}`} {/* Show the specific error message */}
+            {`${error}`}
           </Typography>
         </Box>
+      ) : loading ? (
+        // Render skeleton UI while loading
+        <Grid container spacing={3}>
+          {Array.from(new Array(3)).map((_, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+              <Card
+                sx={{
+                  m: 2,
+                  borderRadius: "2vh",
+                  justifyContent: "space-between",
+                }}
+              >
+                <CardMedia>
+                  <Skeleton
+                    variant="rectangular"
+                    height={200}
+                    // sx={{ borderRadius: "2vh" }}
+                  />
+                </CardMedia>
+                <CardContent>
+                  <Skeleton variant="text" height={8} />
+
+                  <Skeleton variant="text" height={50} />
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       ) : items.length > 0 ? (
         <Grid container spacing={3}>
-          {
-        // console.log(items),
-        // Render news cards if items are available
-        items.map((item) => (
-          <Grid item key={item.uuid} xs={12} sm={6} md={4} lg={3}>
-          <NewsCard // Use a unique key for each item
-            title={item.title}
-            description={item.description}
-            imgUrl={item.image_url}
-            url={item.url}
-            dateTime={item.published_at}
-            author={item.source}
-          />
-          </Grid>
-        ))}
+          {items.map((item) => (
+            <Grid item key={item.uuid} xs={12} sm={6} md={4} lg={3}>
+              <NewsCard
+                title={item.title}
+                description={item.description}
+                imgUrl={item.image_url}
+                url={item.url}
+                dateTime={item.published_at}
+                author={item.source}
+              />
+            </Grid>
+          ))}
         </Grid>
       ) : (
-        // Render loading message while fetching data
         <Box
           sx={{
             display: "flex",
@@ -102,7 +138,7 @@ const TheNewsApi = ({api}) => {
             height: "90vh",
           }}
         >
-          <Typography variant="h6">Loading...</Typography>
+          <Typography variant="h6">No news available.</Typography>
         </Box>
       )}
       <Footer />

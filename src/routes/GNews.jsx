@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Grid, Skeleton, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import NewsCard from "../components/shared/NewsCard";
@@ -6,6 +6,7 @@ import NewsCard from "../components/shared/NewsCard";
 const GNews = ({ api }) => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -25,6 +26,8 @@ const GNews = ({ api }) => {
         setItems(data.articles);
       } catch (error) {
         setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -60,7 +63,39 @@ const GNews = ({ api }) => {
             {error}
           </Typography>
         </Box>
-      ) : items.length > 0 ? (
+      ) : loading ? (
+        <Grid container spacing={3}>
+          {Array.from(new Array(5)).map((_, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+              <Card
+                sx={{
+                  m: 2,
+                  borderRadius: "2vh",
+                  justifyContent: "space-between",
+                }}
+              >
+                  <CardMedia>
+                  <Skeleton
+                    variant="rectangular"
+                    height={200}
+                    // sx={{ borderRadius: "2vh" }}
+                  />
+                </CardMedia>
+                <CardContent>
+                  <Skeleton variant="text" height={8} />
+
+                  <Skeleton variant="text" height={50} />
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      ): items.length > 0 ? (
         <Grid container spacing={3}>
           {items.map((item) => (
             <Grid item key={item.url} xs={12} sm={6} md={4} lg={3}>
@@ -84,15 +119,7 @@ const GNews = ({ api }) => {
             height: "90vh",
           }}
         >
-          {/* <NewsCard 
-          title={"The News Card"}
-          description={"The News Card description"}
-          imgUrl={"/news/Gnews-logo-black.png"}
-          dateTime={"Date"}
-          author={"Author"}
-
-          /> */}
-          <Typography variant="h6">Loading...</Typography>
+          <Typography variant="h6">No News Available</Typography>
         </Box>
       )}
       <Footer />
