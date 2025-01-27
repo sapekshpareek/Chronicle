@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import NotFound from "./components/NotFound";
 import GNews from "./routes/GNews";
 import Home from "./routes/Home";
 import NewsApi from "./routes/NewsApi";
@@ -22,6 +23,7 @@ function App({ mode }) {
         <Route path="/newsapi" element={<NewsApi api={News_Org_API} />} />
         <Route path="/thenewsapi" element={<TheNewsApi api={The_News_API} />} />
         <Route path="/gnews" element={<GNews api={GNews_API} />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
