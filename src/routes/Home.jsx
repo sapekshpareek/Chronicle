@@ -12,7 +12,7 @@ const Home = ({mode}) => {
         minHeight: "90vh",
       }}
     >
-      <SelectCard name={"News API"} logo={"/news/NewsAPI-ORG.png"} url={"/newsapi"}/>
+      {/* <SelectCard name={"News API"} logo={"/news/NewsAPI-ORG.png"} url={"/newsapi"}/> */}
       <SelectCard name={"The News API"} logo = {"/news/TheNewsapi-logo.png"} url = {"/thenewsapi"} />
       <SelectCard name={"GNews"} logo = {mode==="light"?"/news/Gnews-logo-black.png":"/news/Gnews-logo-white.png"} url={"/gnews"}/>
     </Box>
