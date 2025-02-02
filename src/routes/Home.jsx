@@ -13,7 +13,7 @@ const Home = ({mode}) => {
       }}
     >
       {/* <SelectCard name={"News API"} logo={"/news/NewsAPI-ORG.png"} url={"/newsapi"}/> */}
-      <SelectCard name={"The News API"} logo = {"/news/TheNewsapi-logo.png"} url = {"/thenewsapi"} />
+      <SelectCard name={"The News API"} logo = {mode==="light"?"/news/TheNewsapi-logo.png":"/news/TheNewsapi-logo-dark.png"} url = {"/thenewsapi"} />
       <SelectCard name={"GNews"} logo = {mode==="light"?"/news/Gnews-logo-black.png":"/news/Gnews-logo-white.png"} url={"/gnews"}/>
     </Box>
   );
