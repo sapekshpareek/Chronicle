@@ -1,19 +1,28 @@
 import { Box, Card, CardContent, CardMedia, Grid, Skeleton, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
+import Filters from "../components/shared/Filters";
 import NewsCard from "../components/shared/NewsCard";
 
 const GNews = ({ api }) => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [category, setCategory] = useState("general");
+  const [language, setLanguage] = useState("en"); // Default language: English
 
   useEffect(() => {
     const fetchNews = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        const response = await fetch(
-          `https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=in&max=10&apikey=${api}`
-        );
+        const endpoint = searchQuery
+          ? `https://gnews.io/api/v4/search?q=${searchQuery}&lang=${language}&country=in&max=10&apikey=${api}`
+          : `https://gnews.io/api/v4/top-headlines?category=${category}&lang=${language}&country=in&max=10&apikey=${api}`;
+
+        const response = await fetch(endpoint);
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -32,14 +41,14 @@ const GNews = ({ api }) => {
     };
 
     fetchNews();
-  }, [api]);
+  }, [api, searchQuery, category, language]);
 
   return (
     <Box
       sx={{
         height: "90vh",
         overflow: "auto",
-        bgcolor: "background", // Padding around the content
+        bgcolor: "background",
       }}
     >
       {error ? (
@@ -74,17 +83,23 @@ const GNews = ({ api }) => {
                   justifyContent: "space-between",
                 }}
               >
-                  <CardMedia>
+                <CardMedia>
                   <Skeleton
                     variant="rectangular"
                     height={200}
-                    // sx={{ borderRadius: "2vh" }}
                   />
                 </CardMedia>
                 <CardContent>
-                  <Skeleton variant="text" height={8} />
+                  <Box sx={{display: "flex", justifyContent: "space-between"}}>
 
-                  <Skeleton variant="text" height={50} />
+                  <Skeleton variant="text" height={8} sx={{ mb: 2, width: "20%" }}/>
+                  <Skeleton variant="text" height={8} sx={{ mb: 2, width: "20%" }}/>
+                  </Box>
+                  <Skeleton variant="text" height={40} />
+                  <Skeleton variant="text" height={40} />
+                  <Skeleton variant="text" height={40} sx={{ mb: 2 }}/>
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
                   <Skeleton variant="text" height={15} />
                   <Skeleton variant="text" height={15} />
                   <Skeleton variant="text" height={15} />
@@ -95,7 +110,7 @@ const GNews = ({ api }) => {
             </Grid>
           ))}
         </Grid>
-      ): items.length > 0 ? (
+      ) : items.length > 0 ? (
         <Grid container spacing={3}>
           {items.map((item) => (
             <Grid item key={item.url} xs={12} sm={6} md={4} lg={3}>
@@ -122,6 +137,11 @@ const GNews = ({ api }) => {
           <Typography variant="h6">No News Available</Typography>
         </Box>
       )}
+      <Filters 
+        onSearch={setSearchQuery} 
+        onCategoryChange={setCategory} 
+        onLanguageChange={setLanguage} 
+      />
       <Footer />
     </Box>
   );
