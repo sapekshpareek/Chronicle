@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
-import Filters from "../components/shared/Filters";
 import NewsCard from "../components/shared/NewsCard";
 
 const TheNewsApi = ({ api }) => {
@@ -142,7 +141,7 @@ const TheNewsApi = ({ api }) => {
           <Typography variant="h6">No news available.</Typography>
         </Box>
       )}
-      <Filters />
+      {/* <Filters /> */}
       <Footer />
     </Box>
   );

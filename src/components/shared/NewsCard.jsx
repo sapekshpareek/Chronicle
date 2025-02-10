@@ -40,7 +40,7 @@ const NewsCard = ({
       }}
     >
       <Link to={url} target="_blank">
-      <CardMedia component={"img"} image={imgUrl} alt="news-image" />
+      <CardMedia component={"img"} image={imgUrl} alt="news-image" sx={{ minHeight: 200}}/>
       <CardContent>
         <Box
           sx={{
