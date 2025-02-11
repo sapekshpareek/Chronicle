@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -16,7 +17,7 @@ function App({ mode }) {
   const theme_mode = mode;
 
   return (
-    <div>
+    <Box sx={{ minHeight: "100vh"}}>
       <Navbar mode={theme_mode} />
       <Routes>
         <Route path="/" element={<Home mode={mode} />} />
@@ -25,7 +26,7 @@ function App({ mode }) {
         <Route path="/gnews" element={<GNews api={GNews_API} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
+    </Box>
   );
 }
 

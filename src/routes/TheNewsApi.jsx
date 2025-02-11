@@ -22,7 +22,6 @@ const TheNewsApi = ({ api }) => {
         const response = await fetch(
           `https://api.thenewsapi.com/v1/news/top?api_token=${api}&locale=in&limit=3`
         );
-
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(
@@ -36,6 +35,10 @@ const TheNewsApi = ({ api }) => {
         setError(error.message);
       } finally {
         setLoading(false); // Set loading to false after fetching completes
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth' // Optional for smooth scrolling
+        });
       }
     };
 
@@ -84,7 +87,8 @@ const TheNewsApi = ({ api }) => {
       ) : loading ? (
         // Render skeleton UI while loading
         <Grid container spacing={3}>
-          {Array.from(new Array(3)).map((_, index) => (
+          {
+          Array.from(new Array(3)).map((_, index) => (
             <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
               <Card
                 sx={{
