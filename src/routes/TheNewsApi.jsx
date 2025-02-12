@@ -105,9 +105,16 @@ const TheNewsApi = ({ api }) => {
                   />
                 </CardMedia>
                 <CardContent>
-                  <Skeleton variant="text" height={8} />
+                  <Box sx={{display: "flex", justifyContent: "space-between"}}>
 
-                  <Skeleton variant="text" height={50} />
+                  <Skeleton variant="text" height={8} sx={{ mb: 2, width: "20%" }}/>
+                  <Skeleton variant="text" height={8} sx={{ mb: 2, width: "20%" }}/>
+                  </Box>
+                  <Skeleton variant="text" height={40} />
+                  <Skeleton variant="text" height={40} />
+                  <Skeleton variant="text" height={40} sx={{ mb: 2 }}/>
+                  <Skeleton variant="text" height={15} />
+                  <Skeleton variant="text" height={15} />
                   <Skeleton variant="text" height={15} />
                   <Skeleton variant="text" height={15} />
                   <Skeleton variant="text" height={15} />
