@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Filters from "../components/shared/Filters";
 import NewsCard from "../components/shared/NewsCard";
 
-const GNews = ({ api }) => {
+const GNews = ({ api, mode, setMode }) => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -140,7 +140,9 @@ const GNews = ({ api }) => {
       <Filters 
         onSearch={setSearchQuery} 
         onCategoryChange={setCategory} 
-        onLanguageChange={setLanguage} 
+        onLanguageChange={setLanguage}
+        mode={mode}
+        setMode={setMode}
       />
       <Footer />
     </Box>
