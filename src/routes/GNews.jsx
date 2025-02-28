@@ -55,7 +55,7 @@ const GNews = ({ api, mode, setMode }) => {
       <Box
         sx={{
           minHeight: "90vh",
-          bgcolor: "background",
+          bgcolor: "surface",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",

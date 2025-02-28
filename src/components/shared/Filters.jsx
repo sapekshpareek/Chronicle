@@ -317,7 +317,7 @@ const Filters = ({ onSearch, onCategoryChange, onLanguageChange, mode, setMode }
           alignItems: "center",
           gap: 3,
           width: "100%",
-          bgcolor: "surface",
+          bgcolor: "",
           padding: 3,
           borderRadius: "1vh",
           boxShadow: 1,

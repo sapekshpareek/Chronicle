@@ -33,6 +33,7 @@ const NewsCard = ({
         borderRadius: "2vh",
         justifyContent: "space-between",
         cursor: "pointer",
+        bgcolor: "background",
         // display: "flex",
         // flexDirection: { xs: "column", md: "row" },
         // minWidth: { xs: "100%", md: "50%" }, // Set the maximum width for different screen sizes,

@@ -3,19 +3,20 @@ import { Link } from "react-router-dom";
 
 const SelectCard = ({ name, logo, url }) => {
   return (
-    <Card
-      className="items-center flex justify-center"
-      sx={{
-        height: "26vh",
-        width: "34vh",
-        p: 2,
-        borderRadius: "2vh",
-      }}
-    >
-      <Link to={url}>
+    <Link to={url}>
+      <Card
+        className="items-center flex justify-center"
+        sx={{
+          height: "26vh",
+          width: "34vh",
+          p: 2,
+          borderRadius: "2vh",
+          bgcolor: "background",
+        }}
+      >
         <img src={logo} alt={name} />
-      </Link>
-    </Card>
+      </Card>
+    </Link>
   );
 };
 
