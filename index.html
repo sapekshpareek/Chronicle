@@ -3,46 +3,134 @@
 
 <head>
   <meta charset="UTF-8" />
-  <!-- Basic favicon -->
+  
+  <!-- Primary Meta Tags -->
+  <title>The Chronicle - Latest News from Multiple Sources | Free News App</title>
+  <meta name="title" content="The Chronicle - Latest News from Multiple Sources | Free News App">
+  <meta name="description" content="Get the latest news from multiple sources including GNews, TheNewsAPI, and NewsAPI. Free news aggregator with dark/light themes, search functionality, and real-time updates. Stay informed with breaking news, technology, business, sports, and more.">
+  <meta name="keywords" content="news, latest news, breaking news, free news, news aggregator, GNews, TheNewsAPI, NewsAPI, technology news, business news, sports news, world news, India news, real-time news, news app, chronicle news">
+  <meta name="author" content="Sapeksh Pareek">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+  <meta name="distribution" content="global">
+  <meta name="rating" content="general">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://the-chronicle.vercel.app/">
+  <meta property="og:title" content="The Chronicle - Latest News from Multiple Sources | Free News App">
+  <meta property="og:description" content="Get the latest news from multiple sources including GNews, TheNewsAPI, and NewsAPI. Free news aggregator with dark/light themes, search functionality, and real-time updates.">
+  <meta property="og:image" content="https://the-chronicle.vercel.app/logos/Chronicle-logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="The Chronicle">
+  <meta property="og:locale" content="en_US">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://the-chronicle.vercel.app/">
+  <meta property="twitter:title" content="The Chronicle - Latest News from Multiple Sources | Free News App">
+  <meta property="twitter:description" content="Get the latest news from multiple sources including GNews, TheNewsAPI, and NewsAPI. Free news aggregator with dark/light themes, search functionality, and real-time updates.">
+  <meta property="twitter:image" content="https://the-chronicle.vercel.app/logos/Chronicle-logo.png">
+  
+  <!-- Additional SEO Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#005BBB">
+  <meta name="msapplication-TileColor" content="#005BBB">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="The Chronicle">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://the-chronicle.vercel.app/">
+  
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
-  <!-- For iOS devices -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
-  <!-- For Android devices -->
   <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-
-  <!-- SVG favicon for modern browsers -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-
-  <!-- Fallback PNG favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-
-  <!-- Web App Manifest for PWAs -->
+  
+  <!-- Web App Manifest -->
   <link rel="manifest" href="/site.webmanifest">
-
-  <!-- For Safari on iOS -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+  
   <!-- Google Adsense -->
   <meta name="google-adsense-account" content="ca-pub-2909929556071352">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <meta name="description" content="Chronicle is a modern news web app offering a sleek, clean UI with dark and light themes. Powered by three APIs—NewsAPI, TheNewsAPI, and GNews—it provides up-to-date news with seamless navigation. Users can select their preferred API and enjoy personalized news dashboards optimized for both mobile and desktop devices.">
-
-  <meta name="author" content="Sapeksh Pareek" />
-
-  <meta name="keywords" content="The Chronicle, Chronicle by Sapeksh, Latest News, Free News, The Chronicle by Sapeksh Pareek,">
-  <title>The Chronicle</title>
+  
+  <!-- Preconnect to external domains for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://gnews.io">
+  <link rel="preconnect" href="https://api.thenewsapi.com">
+  <link rel="preconnect" href="https://newsapi.org">
+  
+  <!-- Structured Data for News Website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "The Chronicle",
+    "alternateName": "Chronicle News",
+    "url": "https://the-chronicle.vercel.app/",
+    "description": "Get the latest news from multiple sources including GNews, TheNewsAPI, and NewsAPI. Free news aggregator with dark/light themes and real-time updates.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Chronicle",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://the-chronicle.vercel.app/logos/Chronicle-logo.png",
+        "width": 512,
+        "height": 512
+      }
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sapeksh Pareek"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://the-chronicle.vercel.app/?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "sameAs": [
+      "https://github.com/sapekshpareek"
+    ]
+  }
+  </script>
+  
+  <!-- Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "The Chronicle",
+    "url": "https://the-chronicle.vercel.app/",
+    "logo": "https://the-chronicle.vercel.app/logos/Chronicle-logo.png",
+    "description": "Free news aggregator providing latest news from multiple sources",
+    "foundingDate": "2024",
+    "founder": {
+      "@type": "Person",
+      "name": "Sapeksh Pareek"
+    }
+  }
+  </script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+  
+  <!-- Google Analytics (if you have it) -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script> -->
 </body>
 
 </html>
