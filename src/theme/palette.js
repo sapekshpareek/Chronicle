@@ -13,15 +13,15 @@ const lightTheme = {
       light: "#FFD447", // Lighter Yellow
       dark: "#CC9302", // Darker Yellow
     },
-    accent: {
-      main: "#00A676", // Emerald Green
-      light: "#33C092", // Lighter Green
-      dark: "#007A57", // Darker Green
+    background: {
+      default: "#FFFFFF", // Pure White
+      paper: "#F4F4F5", // Light Grey
     },
-    background: "#FFFFFF", // Pure White
-    surface: "#F4F4F5", // Light Grey
-    textPrimary: "#1A1A1A", // Deep Black
-    textSecondary: "#4B5563", // Dark Grey
+    text: {
+      primary: "#1A1A1A", // Deep Black
+      secondary: "#4B5563", // Dark Grey
+    },
+    divider: "#E5E7EB", // Light border color
   },
 };
 
@@ -38,15 +38,15 @@ const darkTheme = {
       light: "#FFE599", // Lighter Yellow
       dark: "#CCAA4C", // Darker Yellow
     },
-    accent: {
-      main: "#52D17A", // Emerald Green
-      light: "#85E5A3", // Lighter Green
-      dark: "#2A9254", // Darker Green
+    background: {
+      default: "#121212", // Deep Black
+      paper: "#1E1E1E", // Dark Grey
     },
-    background: "#121212", // Deep Black
-    surface: "#1E1E1E", // Dark Grey
-    textPrimary: "#EDEDED", // Near White
-    textSecondary: "#A0AAB4", // Muted Grey
+    text: {
+      primary: "#EDEDED", // Near White
+      secondary: "#A0AAB4", // Muted Grey
+    },
+    divider: "#374151", // Dark border color
   },
 };
 

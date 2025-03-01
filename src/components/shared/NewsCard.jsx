@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const NewsCard = ({
@@ -27,45 +27,57 @@ const NewsCard = ({
   });
 
   return (
-    <Card
+    <Box
       sx={{
         m: 2,
         borderRadius: "2vh",
         justifyContent: "space-between",
         cursor: "pointer",
-        bgcolor: "background",
-        // display: "flex",
-        // flexDirection: { xs: "column", md: "row" },
-        // minWidth: { xs: "100%", md: "50%" }, // Set the maximum width for different screen sizes,
-        // height: "auto",
+        bgcolor: "background.default",
+        boxShadow: 2,
+        overflow: "hidden",
+        transition: "all 0.3s ease",
+        "&:hover": {
+          boxShadow: 4,
+          transform: "translateY(-2px)",
+        },
       }}
     >
-      <Link to={url} target="_blank">
-      <CardMedia component={"img"} image={imgUrl} alt="news-image" sx={{ minHeight: 200}}/>
-      <CardContent>
+      <Link to={url} target="_blank" style={{ textDecoration: 'none', color: 'inherit' }}>
         <Box
+          component="img"
+          src={imgUrl}
+          alt="news-image"
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            mb: 2,
+            width: "100%",
+            minHeight: 200,
+            objectFit: "cover",
           }}
-        >
-          <Typography variant="caption" color="textSecondary">
-            {author}
+        />
+        <Box sx={{ p: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              mb: 2,
+            }}
+          >
+            <Typography variant="caption" color="text.secondary">
+              {author}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              {`${formattedDate} ${formattedTime}`}
+            </Typography>
+          </Box>
+          <Typography gutterBottom variant="h5" color="text.primary">
+            {title}
           </Typography>
-          <Typography variant="caption" color="textSecondary">
-            {`${formattedDate} ${formattedTime}`}
+          <Typography variant="body1" color="text.secondary" textAlign={"justify"}>
+            {description}
           </Typography>
         </Box>
-        <Typography gutterBottom variant="h5" >
-          {title}
-        </Typography>
-        <Typography variant="body1" color="textSecondary" textAlign={"justify"}>
-          {description}
-        </Typography>
-      </CardContent>
       </Link>
-    </Card>
+    </Box>
   );
 };
 

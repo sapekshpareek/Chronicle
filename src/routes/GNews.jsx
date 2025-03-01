@@ -50,15 +50,14 @@ const GNews = ({ api, mode, setMode }) => {
         title={`${category.charAt(0).toUpperCase() + category.slice(1)} News - GNews | The Chronicle`}
         description={`Get the latest ${category} news from GNews. Real-time updates on ${category} topics with search functionality and multiple language support. Stay informed with The Chronicle.`}
         keywords={`${category} news, GNews, latest ${category} news, breaking ${category} news, real-time news, ${language === 'hi' ? 'Hindi news' : 'English news'}`}
-        url="https://chronicle-news.vercel.app/gnews"
+        url="https://the-chronicle.vercel.app/gnews"
       />
       <Box
         sx={{
-          minHeight: "90vh",
-          bgcolor: "surface",
           display: "flex",
           flexDirection: "column",
-          overflow: "hidden",
+          bgcolor: "background.paper",
+          minHeight: "90vh",
         }}
       >
         {/* News Content */}
@@ -86,7 +85,7 @@ const GNews = ({ api, mode, setMode }) => {
               >
                 Error
               </Typography>
-              <Typography variant="h6" color="textSecondary" sx={{ textAlign: "center" }}>
+              <Typography variant="h6" color="text.secondary" sx={{ textAlign: "center" }}>
                 {error}
               </Typography>
             </Box>
@@ -94,20 +93,26 @@ const GNews = ({ api, mode, setMode }) => {
             <Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
               {Array.from(new Array(5)).map((_, index) => (
                 <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
-                  <Card
+                  <Box
                     sx={{
-                      m: { xs: 0.5, sm: 1, md: 2 },
+                      m: 2,
                       borderRadius: "2vh",
                       justifyContent: "space-between",
+                      bgcolor: "background.default",
+                      boxShadow: 2,
+                      overflow: "hidden",
                     }}
                   >
-                    <CardMedia>
+                    <Box>
                       <Skeleton
+                        sx={{
+                          bgcolor: "background.default",
+                        }}
                         variant="rectangular"
                         height={200}
                       />
-                    </CardMedia>
-                    <CardContent>
+                    </Box>
+                    <Box sx={{ p: 2 }}>
                       <Box sx={{display: "flex", justifyContent: "space-between"}}>
 
                       <Skeleton variant="text" height={8} sx={{ mb: 2, width: "20%" }}/>
@@ -123,8 +128,8 @@ const GNews = ({ api, mode, setMode }) => {
                       <Skeleton variant="text" height={15} />
                       <Skeleton variant="text" height={15} />
                       <Skeleton variant="text" height={15} />
-                    </CardContent>
-                  </Card>
+                    </Box>
+                  </Box>
                 </Grid>
               ))}
             </Grid>

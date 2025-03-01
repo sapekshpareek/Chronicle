@@ -14,13 +14,13 @@ const NotFound = () => {
           justifyContent: "center",
           height: "84vh",
           textAlign: "center",
-          bgcolor: 'background'
+          bgcolor: 'text.primary'
         }}
       >
         <Typography variant="h1" color="error" gutterBottom>
           404
         </Typography>
-        <Typography variant="h6" color="textSecondary" gutterBottom>
+        <Typography variant="h6" color="text.secondary" gutterBottom>
           Oops! The page you are looking for does not exist.
         </Typography>
         <Button

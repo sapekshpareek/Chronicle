@@ -50,7 +50,7 @@ const TheNewsApi = ({ api }) => {
       sx={{
         height: "90vh",
         overflow: "auto",
-        bgcolor: "background",
+        bgcolor: "background.paper",
       }}
     >
       {error ? (
@@ -76,7 +76,7 @@ const TheNewsApi = ({ api }) => {
           </Typography>
           <Typography
             variant="h6"
-            color="textSecondary"
+            color="text.secondary"
             sx={{
               textAlign: "center",
             }}
@@ -90,21 +90,27 @@ const TheNewsApi = ({ api }) => {
           {
           Array.from(new Array(3)).map((_, index) => (
             <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
-              <Card
+              <Box
                 sx={{
                   m: 2,
                   borderRadius: "2vh",
                   justifyContent: "space-between",
+                  bgcolor: "background.default",
+                  boxShadow: 2,
+                  overflow: "hidden",
                 }}
               >
-                <CardMedia>
+                <Box>
                   <Skeleton
+                    sx={{
+                      bgcolor: "background.default",
+                    }}
                     variant="rectangular"
                     height={200}
                     // sx={{ borderRadius: "2vh" }}
                   />
-                </CardMedia>
-                <CardContent>
+                </Box>
+                <Box sx={{ p: 2 }}>
                   <Box sx={{display: "flex", justifyContent: "space-between"}}>
 
                   <Skeleton variant="text" height={8} sx={{ mb: 2, width: "20%" }}/>
@@ -120,8 +126,8 @@ const TheNewsApi = ({ api }) => {
                   <Skeleton variant="text" height={15} />
                   <Skeleton variant="text" height={15} />
                   <Skeleton variant="text" height={15} />
-                </CardContent>
-              </Card>
+                </Box>
+              </Box>
             </Grid>
           ))}
         </Grid>

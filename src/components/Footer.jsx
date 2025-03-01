@@ -7,7 +7,8 @@ const Footer = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        bgcolor: "surface",
+        bgcolor: "background.default",
+        height: "10vh",
       }}
     >
       <Typography variant="subtitle1" sx={{ padding: 2 }}>

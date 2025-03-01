@@ -38,7 +38,7 @@ const GNews = ({api}) => {
       sx={{
         height: "90vh",
         overflow: "auto",
-        bgcolor: "background",
+        bgcolor: "background.paper",
       }}
     >
       {error ? (
@@ -63,13 +63,7 @@ const GNews = ({api}) => {
           >
             Error
           </Typography>
-          <Typography
-            variant="h6"
-            color="textSecondary"
-            sx={{
-              textAlign: "center",
-            }}
-          >
+          <Typography variant="h6" color="text.secondary" sx={{ textAlign: "center" }}>
             {`${error}`} {/* Show the specific error message */}
           </Typography>
         </Box>
