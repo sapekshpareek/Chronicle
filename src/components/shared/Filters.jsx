@@ -158,12 +158,13 @@ const FiltersModal = ({ open, onClose, onSearch, onCategoryChange, onLanguageCha
       <Slide direction="up" in={open} mountOnEnter unmountOnExit>
         <Box
           sx={{
-            bgcolor: mode === 'dark' ? '#181818' : '#fff',
+            // bgcolor: mode === 'dark' ? '#181818' : '#fff',
+            bgcolor: "background.paper",
             borderTopLeftRadius: 18,
             borderTopRightRadius: 18,
             boxShadow: 24,
             p: 3,
-            width: '100%',
+            width: '100vw',
             maxWidth: 480,
             minHeight: 320,
             maxHeight: '80vh',
@@ -315,9 +316,10 @@ const Filters = ({ onSearch, onCategoryChange, onLanguageChange, mode, setMode }
         sx={{
           display: { xs: "none", md: "flex" },
           alignItems: "center",
+          justifyContent: "center",
           gap: 3,
-          width: "100%",
-          bgcolor: "",
+          width: "98%",
+          bgcolor: "background.default",
           padding: 3,
           borderRadius: "1vh",
           boxShadow: 1,
