@@ -11,6 +11,9 @@ const Navbar = ({mode}) => {
       sx={{
         bgcolor: "background.paper",
         height: "10vh",
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
       }}
     >
       <Link to={"/"}>
