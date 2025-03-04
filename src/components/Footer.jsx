@@ -7,7 +7,7 @@ const Footer = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        bgcolor: "background.default",
+        bgcolor: "background.paper",
         height: "10vh",
       }}
     >

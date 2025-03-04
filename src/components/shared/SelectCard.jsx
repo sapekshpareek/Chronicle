@@ -11,7 +11,7 @@ const SelectCard = ({ name, logo, url }) => {
           width: "34vh",
           p: 2,
           borderRadius: "2vh",
-          bgcolor: "background.default",
+          bgcolor: "background.paper",
           boxShadow: 3,
           transition: "all 0.3s ease",
           "&:hover": {

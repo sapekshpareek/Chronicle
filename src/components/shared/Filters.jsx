@@ -319,7 +319,7 @@ const Filters = ({ onSearch, onCategoryChange, onLanguageChange, mode, setMode }
           justifyContent: "center",
           gap: 3,
           width: "98%",
-          bgcolor: "background.default",
+          bgcolor: "background.paper",
           padding: 3,
           borderRadius: "1vh",
           boxShadow: 1,

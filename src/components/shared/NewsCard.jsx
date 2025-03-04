@@ -33,7 +33,7 @@ const NewsCard = ({
         borderRadius: "2vh",
         justifyContent: "space-between",
         cursor: "pointer",
-        bgcolor: "background.default",
+        bgcolor: "background.paper",
         boxShadow: 2,
         overflow: "hidden",
         transition: "all 0.3s ease",

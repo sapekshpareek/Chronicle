@@ -56,7 +56,7 @@ const GNews = ({ api, mode, setMode }) => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          bgcolor: "background.paper",
+          bgcolor: "background.default",
           minHeight: "90vh",
         }}
       >
@@ -98,7 +98,7 @@ const GNews = ({ api, mode, setMode }) => {
                       m: 2,
                       borderRadius: "2vh",
                       justifyContent: "space-between",
-                      bgcolor: "background.default",
+                      bgcolor: "background.paper",
                       boxShadow: 2,
                       overflow: "hidden",
                     }}
@@ -106,7 +106,7 @@ const GNews = ({ api, mode, setMode }) => {
                     <Box>
                       <Skeleton
                         sx={{
-                          bgcolor: "background.default",
+                          bgcolor: "background.paper",
                         }}
                         variant="rectangular"
                         height={200}

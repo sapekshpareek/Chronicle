@@ -16,7 +16,7 @@ const Home = ({mode}) => {
         sx={{
           display: 'flex',
           flexDirection: {xs: 'column', md: "row"},
-          bgcolor: "background.paper",
+          bgcolor: "background.default",
           minHeight: "90vh",
         }}
       >

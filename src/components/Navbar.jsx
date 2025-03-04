@@ -9,7 +9,7 @@ const Navbar = ({mode}) => {
     <Box
       className="flex items-center justify-center"
       sx={{
-        bgcolor: "background.default",
+        bgcolor: "background.paper",
         height: "10vh",
       }}
     >

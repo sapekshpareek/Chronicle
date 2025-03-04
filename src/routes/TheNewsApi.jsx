@@ -50,7 +50,7 @@ const TheNewsApi = ({ api }) => {
       sx={{
         height: "90vh",
         overflow: "auto",
-        bgcolor: "background.paper",
+        bgcolor: "background.default",
       }}
     >
       {error ? (
@@ -95,7 +95,7 @@ const TheNewsApi = ({ api }) => {
                   m: 2,
                   borderRadius: "2vh",
                   justifyContent: "space-between",
-                  bgcolor: "background.default",
+                  bgcolor: "background.paper",
                   boxShadow: 2,
                   overflow: "hidden",
                 }}
@@ -103,7 +103,7 @@ const TheNewsApi = ({ api }) => {
                 <Box>
                   <Skeleton
                     sx={{
-                      bgcolor: "background.default",
+                      bgcolor: "background.paper",
                     }}
                     variant="rectangular"
                     height={200}
