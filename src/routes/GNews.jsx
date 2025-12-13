@@ -19,9 +19,23 @@ const GNews = ({ api, mode, setMode }) => {
       setError(null);
 
       try {
-        const endpoint = searchQuery
-          ? `https://gnews.io/api/v4/search?q=${searchQuery}&lang=${language}&country=in&max=10&apikey=${api}`
-          : `https://gnews.io/api/v4/top-headlines?category=${category}&lang=${language}&country=in&max=10&apikey=${api}`;
+        // In production, use server-side proxy to avoid CORS
+        // In development (npm run dev), use direct API call
+        const isDev = import.meta.env.DEV;
+        
+        let endpoint;
+        if (isDev) {
+          // Development: direct API call with key
+          endpoint = searchQuery
+            ? `https://gnews.io/api/v4/search?q=${encodeURIComponent(searchQuery)}&lang=${encodeURIComponent(language)}&country=in&max=10&apikey=${api}`
+            : `https://gnews.io/api/v4/top-headlines?category=${encodeURIComponent(category)}&lang=${encodeURIComponent(language)}&country=in&max=10&apikey=${api}`;
+        } else {
+          // Production: use proxy to avoid CORS
+          const query = searchQuery
+            ? `q=${encodeURIComponent(searchQuery)}&lang=${encodeURIComponent(language)}&country=in&max=10`
+            : `category=${encodeURIComponent(category)}&lang=${encodeURIComponent(language)}&country=in&max=10`;
+          endpoint = `/api/gnews?${query}`;
+        }
 
         const response = await fetch(endpoint);
 
