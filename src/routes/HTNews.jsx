@@ -6,14 +6,14 @@ import NewsCard from "../components/shared/NewsCard";
 import SEO from "../components/SEO";
 
 const RSS_FEEDS = {
-  general: "https://www.hindustantimes.com/feeds/rss/latest/rssfeed.xml",
-  world: "https://www.hindustantimes.com/feeds/rss/world-news/rssfeed.xml",
-  nation: "https://www.hindustantimes.com/feeds/rss/india-news/rssfeed.xml",
-  business: "https://www.hindustantimes.com/feeds/rss/business/rssfeed.xml",
-  technology: "https://www.hindustantimes.com/feeds/rss/technology/rssfeed.xml",
-  entertainment: "https://www.hindustantimes.com/feeds/rss/entertainment/rssfeed.xml",
-  sports: "https://www.hindustantimes.com/feeds/rss/sports/rssfeed.xml",
-  health: "https://www.hindustantimes.com/feeds/rss/lifestyle/health/rssfeed.xml"
+  general: "latest/rssfeed.xml",
+  world: "world-news/rssfeed.xml",
+  nation: "india-news/rssfeed.xml",
+  business: "business/rssfeed.xml",
+  technology: "technology/rssfeed.xml",
+  entertainment: "entertainment/rssfeed.xml",
+  sports: "sports/rssfeed.xml",
+  health: "lifestyle/health/rssfeed.xml"
 };
 
 const HTNews = ({ mode, setMode }) => {
@@ -22,8 +22,6 @@ const HTNews = ({ mode, setMode }) => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState(() => localStorage.getItem('newsCategory') || "general");
-  // HT is primarily English, so language filter might not change the feed itself,
-  // but we keep the state to match the Filters component API.
   const [language, setLanguage] = useState(() => localStorage.getItem('newsLanguage') || "en");
 
   useEffect(() => {
@@ -32,9 +30,8 @@ const HTNews = ({ mode, setMode }) => {
       setError(null);
 
       try {
-        const rssUrl = RSS_FEEDS[category] || RSS_FEEDS.general;
-        // Using rss2json public API to bypass CORS issues in browser
-        const endpoint = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+        const rssPath = RSS_FEEDS[category] || RSS_FEEDS.general;
+        const endpoint = `/api/htnews/${rssPath}`;
         
         const response = await fetch(endpoint);
 
@@ -42,20 +39,48 @@ const HTNews = ({ mode, setMode }) => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
-        
-        if (data.status !== "ok") {
-           throw new Error(data.message || "Failed to parse RSS feed");
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+        // Check for parsing errors
+        const parseError = xmlDoc.querySelector("parsererror");
+        if (parseError) {
+          throw new Error("Error parsing RSS feed");
         }
 
-        let fetchedItems = data.items || [];
+        const itemNodes = xmlDoc.querySelectorAll("item");
+        let fetchedItems = Array.from(itemNodes).map(node => {
+          const title = node.querySelector("title")?.textContent || "";
+          const description = node.querySelector("description")?.textContent || "";
+          const link = node.querySelector("link")?.textContent || "";
+          const pubDate = node.querySelector("pubDate")?.textContent || "";
+          
+          let imgUrl = "/news/hindustan-times-logo.png";
+          const mediaContent = node.getElementsByTagName("media:content")[0];
+          if (mediaContent && mediaContent.getAttribute("url")) {
+            imgUrl = mediaContent.getAttribute("url");
+          } else {
+            const enclosure = node.querySelector("enclosure");
+            if (enclosure && enclosure.getAttribute("url")) {
+              imgUrl = enclosure.getAttribute("url");
+            } else {
+              const imgMatch = description.match(/<img[^>]+src="([^">]+)"/);
+              if (imgMatch && imgMatch[1]) {
+                imgUrl = imgMatch[1];
+              }
+            }
+          }
+
+          return { title, description, link, pubDate, imgUrl };
+        });
 
         // Client-side search filtering
         if (searchQuery) {
           const query = searchQuery.toLowerCase();
           fetchedItems = fetchedItems.filter(item => 
-            (item.title && item.title.toLowerCase().includes(query)) || 
-            (item.description && item.description.toLowerCase().includes(query))
+            item.title.toLowerCase().includes(query) || 
+            item.description.toLowerCase().includes(query)
           );
         }
 
@@ -69,22 +94,6 @@ const HTNews = ({ mode, setMode }) => {
 
     fetchNews();
   }, [searchQuery, category]);
-
-  // Helper to extract image from description if needed, or use a default
-  const getImageUrl = (item) => {
-    if (item.enclosure && item.enclosure.link) {
-      return item.enclosure.link;
-    }
-    if (item.thumbnail) {
-      return item.thumbnail;
-    }
-    // Try to extract from description HTML
-    const imgMatch = item.description?.match(/<img[^>]+src="([^">]+)"/);
-    if (imgMatch && imgMatch[1]) {
-      return imgMatch[1];
-    }
-    return "/news/hindustan-times-logo.png";
-  };
 
   // Helper to clean description from HTML tags
   const cleanDescription = (html) => {
@@ -185,15 +194,15 @@ const HTNews = ({ mode, setMode }) => {
             </Grid>
           ) : items.length > 0 ? (
             <Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
-              {items.map((item) => (
-                <Grid item key={item.link || item.guid} xs={12} sm={6} md={4} lg={3}>
+              {items.map((item, index) => (
+                <Grid item key={item.link || index} xs={12} sm={6} md={4} lg={3}>
                   <NewsCard
                     title={item.title}
                     description={cleanDescription(item.description)}
-                    imgUrl={getImageUrl(item)}
+                    imgUrl={item.imgUrl}
                     url={item.link}
                     dateTime={item.pubDate}
-                    author={item.author || "Hindustan Times"}
+                    author="Hindustan Times"
                   />
                 </Grid>
               ))}

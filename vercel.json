@@ -1,5 +1,6 @@
 {
     "rewrites": [
+      { "source": "/api/htnews/:path*", "destination": "https://www.hindustantimes.com/feeds/rss/:path*" },
       { "source": "/((?!api).*)", "destination": "/" }
     ]
   }
